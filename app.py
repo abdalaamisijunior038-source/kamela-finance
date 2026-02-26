@@ -23,7 +23,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fonction pour charger les données
 def load_data():
-    flux = conn.read(worksheet="Flux")
+    flux = conn.read()
     dettes = conn.read(worksheet="Dettes")
     return flux, dettes
 
@@ -103,4 +103,5 @@ with menu[2]:
                     updated_flux = pd.concat([df_flux, nouvelle_ligne_flux], ignore_index=True)
                     conn.update(worksheet="Flux", data=updated_flux)
                     
+
                     st.rerun()
